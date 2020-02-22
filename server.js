@@ -9,6 +9,7 @@ const app = express();
 app.set('view engine', 'ejs');
 //Declaring body parser for reading data from html
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static('resources'))
 
 //Connecting to the mongodb
 MongoClient.connect("mongodb+srv://alexUser:KnockKnock123@cluster0-knqsw.gcp.mongodb.net/test?retryWrites=true&w=majority", (err, database) => {
@@ -22,10 +23,26 @@ MongoClient.connect("mongodb+srv://alexUser:KnockKnock123@cluster0-knqsw.gcp.mon
 
 });
 
-//GET requests
+//GET requests  TODO 404 page
 app.get('/', (req, res) => {
     res.render('pages/index.ejs');
 });
+app.get('/search', (req, res) => {
+    res.render('pages/search.ejs');
+});
+app.get('/input', (req, res) => {
+    res.render('pages/input.ejs');
+});
+app.get('/footprint', (req, res) => {
+    res.render('pages/footprint.ejs');
+});
+app.get('/register', (req, res) => {
+    res.render('pages/register.ejs');
+});
+app.get('/about', (req, res) => {
+    res.render('pages/aboutus.ejs');
+});
+
 
 //POST requests
 app.post('/metrics', (req,res) => {
