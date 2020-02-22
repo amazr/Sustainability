@@ -1,0 +1,52 @@
+.textcenter {
+	text-align: center;
+	}
+	.fullpagelink {
+	margin-right: 5%; 
+	margin-left: 10%;
+	}
+	.imagecontainer{
+	position: relative;
+	text-align: center;
+	}
+	.threebytwo{
+	max-width: 100%;
+	width: 900px;
+	margin: 0 auto;
+	}
+	.twobythree{
+	padding-top: 50px;
+	max-width: 100%;
+	width: 470px;
+	margin: 0 auto;
+	}
+	.square{
+	max-width: 100%;
+	width: 550px;
+	margin: 0 auto;
+	}
+	.overlaycaption{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+	transition: .5s ease;
+	background-color: rgba(20, 20, 20, .5)
+	}
+	.imagecontainer:hover .overlaycaption {
+	opacity: 1;
+	}
+	.text {
+	color: white;
+	position: absolute;
+	top: 60%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	text-align: center;
+	}
