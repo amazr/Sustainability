@@ -7,10 +7,11 @@
         <%- include('../partials/styles') %>
     </head>
     <body style="background-color: #333333">
-        <div style="background-color: #4f7942; margin-top: 100px; height: 80%;">
+        <div style="background-color: white; margin-top: 100px; height: 80%;">
             <br>
-            <h1><%= storename %></h1>
-            <h4><%= storestate %></h4>
+            <h1 style="color:#4f7942;" ><%= storename %></h1>
+            <h4 style="color:#4f7942;"><%= storestate %></h4>
+            <p id="lbsco2" style="color:#4f7942;"></p>
             <%- include('../partials/header') %>
             <div id="storedata" style="visibility: hidden; height: 0%;"><%- JSON.stringify(storedata)%></div>
             <div id="storename" style="visibility: hidden; height: 0%;"><%= storename%></div>
@@ -19,9 +20,10 @@
             <div id="apikey" style="visibility: hidden; height: 0%;"><%= apikey%></div>
             <br>
             <br>
+            <h2 style="color:#4f7942;">Breakdown of Carbon Emissions by Source</h2>
+            <div id="g3"></div>
             <div id="g1"></div>
             <div id="g2"></div>
-            <div id="g3"></div>
             <div id="g4"></div>
         </div>
         <script src="/js/plotly-latest.min.js"></script>
