@@ -1,9 +1,42 @@
 <form action="login" method="POST">
-    <label for="name">What is the Name of your store?</label>
-    <input type="text" placeholder="Store Name" name="name">
+    <style>
+        .columnleft {
+        padding-right: 20px;
+        text-align: right;
+        width: 50%;
+        }
+        .columnright {
+        float: left;
+        width: 50%;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+        content: "";
+        display: table;
+        clear: both;
+        }
+        .button{
+            padding-left: 50%;
+        }
+    </style>
+    <h3 style="color: white; text-align: center;">Please Login</h3>
     <br>
-    <label for="state">Password</label>
-    <input type="text" placeholder="Password" name="password">
     <br>
-    <button type="submit">Submit</button>
+    <div class="row">
+        <div class="columnleft"><label for="name">What is the Name of your store?</label></div>
+        <div class="columnright"><input type="text" placeholder="Store Name" name="name"></div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="columnleft"><label for="state">Password</label></div>
+        <div class="columnright"><input type="password" placeholder="Password" name="password"></div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="columnleft"></div>
+        <div class="columnright"><button type="submit">Submit</button></div>
+    </div>
+
+    
 </form>
