@@ -5,13 +5,28 @@
         <meta charset="UTF-8">
         <meta name="description" content="Sustainabeanity">
         <%- include('../partials/styles') %>
+        <style>
+            .body{ 
+                background-color: white;
+                width: 100%;
+            }
+            .graphs{
+                margin-left: 15%;
+                margin-right: 15%;
+                width: 60;
+                height: auto;
+                padding-bottom: 5%;
+
+            }
+        </style>
     </head>
     <body style="background-color: #333333">
         <div style="background-color: white; margin-top: 100px; height: 80%;">
             <br>
-            <h1 style="color:#4f7942;" ><%= storename %></h1>
-            <h4 style="color:#4f7942;"><%= storestate %></h4>
-            <p id="lbsco2" style="color:#4f7942;"></p>
+            <div style="padding-left: 20%; padding-right: 20%;">
+                <h1><%= storename %></h1>
+             <h4><%= storestate %></h4>
+            </div>
             <%- include('../partials/header') %>
             <div id="storedata" style="visibility: hidden; height: 0%;"><%- JSON.stringify(storedata)%></div>
             <div id="storename" style="visibility: hidden; height: 0%;"><%= storename%></div>
@@ -20,11 +35,22 @@
             <div id="apikey" style="visibility: hidden; height: 0%;"><%= apikey%></div>
             <br>
             <br>
-            <h2 style="color:#4f7942;">Breakdown of Carbon Emissions by Source</h2>
-            <div id="g3"></div>
-            <div id="g1"></div>
-            <div id="g2"></div>
-            <div id="g4"></div>
+            <div class="body">
+              <h2 style="color:#4f7942;">Breakdown of Carbon Emissions by Source</h2>
+                <div class="graphs">
+                    <div id="g3"></div>
+                    <br>
+                    <div id="g1"></div>
+                    <br>
+                    <div id="g2"></div>
+                     <br>
+                    <div id="g4"></div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+            </div>
         </div>
         <script src="/js/plotly-latest.min.js"></script>
         <script src="/js/graph.js"></script>

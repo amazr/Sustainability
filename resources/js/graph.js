@@ -99,8 +99,8 @@ type: 'pie'
 
 var layout3 = {
 title: 'Total pounds of CO2 from most recent data: ' + Math.floor(milk + lastElectric + gas + commute + lastCoffee) + 'lbs',
-height: 400,
-width: 500
+height: 50,
+width: 700,
 };
 
 Plotly.newPlot(g3, data3, layout3);
