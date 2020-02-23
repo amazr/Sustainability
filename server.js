@@ -4,7 +4,7 @@ const MongoClient = require('mongodb').MongoClient;
 const bodyParser= require('body-parser');
 const bcrypt = require("bcrypt");
 const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
+const MongoStore = require('connect-mongodb-session')(session);
 
 const app = express();
 
@@ -15,11 +15,12 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('resources'))
 app.use(session({
     store:  new MongoStore({
-        url:"mongodb+srv://alexUser:KnockKnock123@cluster0-knqsw.gcp.mongodb.net/test?retryWrites=true&w=majority"
+        uri:"mongodb+srv://alexUser:KnockKnock123@cluster0-knqsw.gcp.mongodb.net/test?retryWrites=true&w=majority",
+        collection:"mySessions"
     }),
     secret:'xBSBCljxbJbcjdhblJHXwi123',
-    resave:false,
-    saveUnitialized:false,
+    resave:true,
+    saveUnitialized:true,
     cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 7 * 2 // two weeks
     }
@@ -44,8 +45,13 @@ app.get('/', (req, res) => {
 app.get('/search', (req, res) => {
     res.render('pages/search.ejs');
 });
-app.get('/input', (req, res) => {
-    res.render('pages/input.ejs');
+app.get('/account', (req, res) => {
+    if (req.session.user) {
+        res.render('pages/input.ejs');
+    } 
+    else {
+        res.render('pages/account.ejs');
+    }
 });
 app.get('/footprint', (req, res) => {
     res.render('pages/footprint.ejs');
@@ -67,8 +73,10 @@ app.post('/metrics', (req,res) => {
         {name:sname},
         {$push: {metrics:req.body}}
     )
+    res.redirect('/');
 });
 
+//USER ATTEMPTING TO LOGIN
 app.post('/login', async (req,res) => {
     let user;
     try {
@@ -80,15 +88,31 @@ app.post('/login', async (req,res) => {
     }
 
     let isPasswordCorrect = false;
-    bcrypt.compare(req.body.password, user.password, (err, result) => {
+    password = req.body.password;
+    bcrypt.compare(password, user.password, (err, result) => {
         if (result) isPasswordCorrect = true;
-    });
+        console.log
     if (isPasswordCorrect) {
         //user logged in
+        req.session.user = {
+            name: user.name,
+      };
+      res.redirect('/account');
     }    
     else {
         //user failed to login
+        res.redirect('/account');
     }
+    });
+})
+
+app.post('/logout', (req,res) => {
+    if(req.session.user) {
+        delete req.session.user;
+        res.redirect('/account');
+    } else {
+        res.redirect('/');
+    }   
 })
 
 //CREATE NEW ACCOUNT
@@ -96,25 +120,22 @@ app.post('/account', (req,res) => {
     //lets do some password stuff
     let plainPassword = req.body.password;
     let repeat = req.body.rpassword;
+    delete req.body.rpassword;
 
     if (plainPassword === repeat) { 
         //Passwords match
         req.body.metrics = [{}];
         bcrypt.hash(plainPassword, 10, (err, hash) => {
             req.body.password = hash;
-        });
-        db.collection('stores').insertOne(req.body, (err, result) => {
-            if (err) return console.log(err);
+            db.collection('stores').insertOne(req.body, (err, result) => {
+                if (err) return console.log(err);
+            });
         });
     }
     else {  
         //Passwords do NOT match
+        console.log("Passwords Don't match");
     }
-
-    req.body.metrics = [{}];
-    db.collection('stores').insertOne(req.body, (err, result) => {
-        if (err) return console.log(err);
-    });
 
     //WHERE TO GO AFTER REGISTERING FOR AN ACCOUNT
     res.redirect('/');
