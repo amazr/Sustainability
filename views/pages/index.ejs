@@ -6,14 +6,26 @@
         <meta name="description" content="Sustainabeanity">
         <%- include('../partials/styles') %>
         <style>
-            .textcenter {
-            text-align: center;
-            }
+            .blur {
+            background-position: center right;
+            -webkit-filter: blur(3px);
+            -moz-filter: blur(3px);
+            -o-filter: blur(3px);
+            -ms-filter: blur(3px);
+            filter: blur(3px);
+            filter: blur(3px);
+            float: right;
+            height: 100%;
+            width: 360px;
+        }
         </style>
         <style>
-            .fullpagelink {
-            margin-right: 5%; 
-            margin-left: 10%;
+            .overlayText{
+                position: absolute;
+                z-index: 999;
+                text-align: center;
+                margin-top: 375px;
+                width: 100%;
             }
         </style>
     </head>
@@ -23,11 +35,14 @@
         </div>
         <%- include('../partials/header') %>
         <div id="fullPage">
-            <div class="section s1">
-                <div class="textcenter text-white">
+            <div id="backgroundImage">
+                <div id="blurBackground"></div>
+                <div class="overlayText">
                     <h1>Sustaina<u>bean</u>ity<br/></h1>
                     <h5><br>Caron Footprint Analysis for Business Owners</h5>
                 </div>
+            </div>
+                
             </div>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.7/fullpage.min.js"></script>

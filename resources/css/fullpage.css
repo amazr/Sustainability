@@ -3,15 +3,30 @@
 	background-size: cover;
 	background-position: center;
 }
-
-.s2 {
-	background: url(../img/index/2.jpg);
-	background-size: cover;
-	background-position: center;
+.bluredBackground {
+    width:100%;
+    height:100%;
+    background-image:url(../img/index/bamboo.jpg);
+    position: relative;
+    filter: blur(2px);
 }
 
-.s3 {
-	background: url(../img/index/6.jpg);
+#backgroundImage {
+	background-image:url(../img/index/bamboo.jpg);
 	background-size: cover;
+	background-repeat: no-repeat;
+	width: 100%;
+	height: 100%;
 	background-position: center;
 }
+#blurBackground {
+	display:block;
+	position:absolute;
+	width: 120%;
+	height:200px;
+	top:0%;
+	left:50%;
+	background-image: url(../img/index/bamboo.jpg);
+	background-position: center center;
+	transform:translate(-50%,-50%);
+	-webkit-filter:blur(5px); filter: blur(5px); -moz-filter:blur(5px); -ms-filter: blur(5px);}

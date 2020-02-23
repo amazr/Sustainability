@@ -1,3 +1,25 @@
 <form action="logout" method="POST">
-    <button type="submit">Logout</button>
+    <style>
+    .columnleft {
+       padding-right: 20px;
+       text-align: right;
+       width: 50%;
+       }
+       .columnright {
+       float: left;
+       width: 50%;
+       }
+       /* Clear floats after the columns */
+       .row:after {
+       content: "";
+       display: table;
+       clear: both;
+       }
+    </style>
+    <br>
+    <div class="row">
+        <div class="columnleft"></div>
+        <div class="columnright"><button type="submit">Logout</button>
+        </div>
+    </div>
 </form>
