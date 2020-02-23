@@ -6,8 +6,17 @@ let apikey = document.getElementById('apikey').textContent;
 
 
 TESTER = document.getElementById('tester');
+
+let dates = [];
+let commute = [];
+
+for (i = 1; i < storedata.length; i++) {
+	dates.push(storedata[i].date);
+	commute.push(storedata[i].commute);
+}
+
 Plotly.newPlot( TESTER, [{
-	x: [1, 2, 3, 4, 5],
-	y: [1, 2, 4, 8, 16] }], {
-    margin: { t: 0 } 
+	x: dates,
+	y: commute }], {
+	margin: { t: 0 } 
 });

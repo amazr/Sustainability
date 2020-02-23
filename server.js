@@ -87,6 +87,7 @@ app.post('/metrics', (req,res) => {
     //MUST GET STORE NAME FROM SESSION
     let sname = req.body.name;
     delete req.body.name;
+    req.body.date = new Date();
     db.collection('stores').updateOne(
         {name:sname},
         {$push: {metrics:req.body}}
