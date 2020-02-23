@@ -43,14 +43,15 @@ app.get('/', (req, res) => {
     res.render('pages/index.ejs');
 });
 app.get('/search', (req, res) => {
-    res.render('pages/search.ejs');
+    let results = [];
+    res.render('pages/search.ejs', {results:results});
 });
 app.get('/account', (req, res) => {
     if (req.session.user) {
         res.render('pages/input.ejs');
     } 
     else {
-        res.render('pages/account.ejs');
+        res.render('pages/account.ejs', {error:""});
     }
 });
 app.get('/footprint', (req, res) => {
@@ -61,6 +62,10 @@ app.get('/register', (req, res) => {
 });
 app.get('/about', (req, res) => {
     res.render('pages/aboutus.ejs');
+});
+app.get('/:name', (req,res) => {
+    //req.params.name
+    res.render('pages/dynamicStore.ejs');
 });
 
 //POST requests
@@ -78,37 +83,39 @@ app.post('/metrics', (req,res) => {
 
 //USER ATTEMPTING TO LOGIN
 app.post('/login', async (req,res) => {
-    let user;
-    try {
-        user = await db.collection('stores').findOne({
-            name:req.body.name
-        });
-    }catch {
-        console.log("user doesn't exist");
-    }
 
-    let isPasswordCorrect = false;
-    password = req.body.password;
-    bcrypt.compare(password, user.password, (err, result) => {
-        if (result) isPasswordCorrect = true;
-        console.log
-    if (isPasswordCorrect) {
-        //user logged in
-        req.session.user = {
-            name: user.name,
-      };
-      res.redirect('/account');
-    }    
-    else {
-        //user failed to login
-        res.redirect('/account');
-    }
+    db.collection('stores').findOne({storeID:parseName(req.body.name)}, function(err, result) {
+        console.log(result);
+        if (err || result === null) res.render('pages/account.ejs', {error:"invusr"});
+        else {
+            let user = result;
+            let isPasswordCorrect = false;
+            password = req.body.password;
+            bcrypt.compare(password, user.password, (err, result) => {
+                if (err || result === null) res.render('pages/account.ejs', {error:"invpwd"});
+                if (result) isPasswordCorrect = true;
+                if (isPasswordCorrect) {
+                //user logged in
+                    req.session.user = {
+                    name: user.name,
+                    };
+                    console.log("user logged in");
+                    res.redirect('/account');
+                }    
+                else {
+                    //user failed to login
+                    res.render('pages/account.ejs', {error:"invpwd"});
+                }
+            });
+        }
     });
 })
 
+//USER LOGGING OUT
 app.post('/logout', (req,res) => {
     if(req.session.user) {
         delete req.session.user;
+        console.log("user logged out");
         res.redirect('/account');
     } else {
         res.redirect('/');
@@ -116,30 +123,57 @@ app.post('/logout', (req,res) => {
 })
 
 //CREATE NEW ACCOUNT
-app.post('/account', (req,res) => {
+app.post('/register', (req,res) => {
+
     //lets do some password stuff
     let plainPassword = req.body.password;
     let repeat = req.body.rpassword;
     delete req.body.rpassword;
-
-    if (plainPassword === repeat) { 
-        //Passwords match
-        req.body.metrics = [{}];
-        bcrypt.hash(plainPassword, 10, (err, hash) => {
-            req.body.password = hash;
-            db.collection('stores').insertOne(req.body, (err, result) => {
-                if (err) return console.log(err);
-            });
-        });
-    }
-    else {  
-        //Passwords do NOT match
-        console.log("Passwords Don't match");
-    }
+    let storeID = parseName(req.body.name);
+    req.body.storeID = storeID
+    
+    db.collection('stores').findOne( {storeID:req.body.storeID}, (err, example) => {
+        if (example) {
+            return console.log("User already exists");
+        } else {
+            if (plainPassword === repeat) { 
+                //Passwords match
+                req.body.metrics = [{}];
+                bcrypt.hash(plainPassword, 10, (err, hash) => {
+                    req.body.password = hash;
+                    db.collection('stores').insertOne(req.body, (err, result) => {
+                        if (err) return console.log(err);
+                        else console.log("User Created");
+                    });
+                });
+            }
+            else {  
+                //Passwords do NOT match
+                console.log("Passwords Don't match");
+            }
+        }
+    });
 
     //WHERE TO GO AFTER REGISTERING FOR AN ACCOUNT
     res.redirect('/');
-});
+})
+
+//SEARCHING
+app.post('/search', (req,res) => {
+    storeID = parseName(req.body.name)
+    console.log(new RegExp(req.body.name));
+    db.collection('stores').find( {storeID: new RegExp(storeID)}).toArray(function(err, results) {
+        res.render('pages/search.ejs',{results:results});
+    });
+})
+
+//remove whitespace and lowercase all letters
+function parseName(name) {
+    name = name.replace(/ /g, "");
+    name = name.toLowerCase();
+    return name;
+}
+
 
 /*
  {

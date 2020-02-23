@@ -10,8 +10,21 @@
                 <img src="/img/preloader.gif"/>
             </div>
             <%- include('../partials/header') %>
-            <h1 style="margin-top:100px; text-align: center;">test</h1>
-        <script src="/js/preloader.js"></script>
+            <br>
+            <br>
+            <br>
+            <br>
+            <%- include('../partials/search') %>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <% for (let i = 0; i < results.length; i++) { %>
+                <br>
+                <%= results[i].name %>
+            <% } %>
+            <script src="/js/preloader.js"></script>
         <script src="/js/jquery-3.2.1.min.js"></script>  
         <script src="/js/main.js"></script>
         </body>
