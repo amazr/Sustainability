@@ -1,7 +1,10 @@
 //Requirements
 const express = require('express');
-const bodyParser= require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
+const bodyParser= require('body-parser');
+const bcrypt = require("bcrypt");
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
 const app = express();
 
@@ -10,6 +13,17 @@ app.set('view engine', 'ejs');
 //Declaring body parser for reading data from html
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('resources'))
+app.use(session({
+    store:  new MongoStore({
+        url:"mongodb+srv://alexUser:KnockKnock123@cluster0-knqsw.gcp.mongodb.net/test?retryWrites=true&w=majority"
+    }),
+    secret:'xBSBCljxbJbcjdhblJHXwi123',
+    resave:false,
+    saveUnitialized:false,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 7 * 2 // two weeks
+    }
+}));
 
 //Connecting to the mongodb
 MongoClient.connect("mongodb+srv://alexUser:KnockKnock123@cluster0-knqsw.gcp.mongodb.net/test?retryWrites=true&w=majority", (err, database) => {
@@ -43,10 +57,10 @@ app.get('/about', (req, res) => {
     res.render('pages/aboutus.ejs');
 });
 
-
 //POST requests
+//Adding metrics to a unique store
 app.post('/metrics', (req,res) => {
-    console.log(req.body);
+    //MUST GET STORE NAME FROM SESSION
     let sname = req.body.name;
     delete req.body.name;
     db.collection('stores').updateOne(
@@ -55,14 +69,54 @@ app.post('/metrics', (req,res) => {
     )
 });
 
-app.post('/account', (req,res) => {
-    console.log(req.body);
-    req.body.metrics = [{}];
+app.post('/login', async (req,res) => {
+    let user;
+    try {
+        user = await db.collection('stores').findOne({
+            name:req.body.name
+        });
+    }catch {
+        console.log("user doesn't exist");
+    }
 
+    let isPasswordCorrect = false;
+    bcrypt.compare(req.body.password, user.password, (err, result) => {
+        if (result) isPasswordCorrect = true;
+    });
+    if (isPasswordCorrect) {
+        //user logged in
+    }    
+    else {
+        //user failed to login
+    }
+})
+
+//CREATE NEW ACCOUNT
+app.post('/account', (req,res) => {
+    //lets do some password stuff
+    let plainPassword = req.body.password;
+    let repeat = req.body.rpassword;
+
+    if (plainPassword === repeat) { 
+        //Passwords match
+        req.body.metrics = [{}];
+        bcrypt.hash(plainPassword, 10, (err, hash) => {
+            req.body.password = hash;
+        });
+        db.collection('stores').insertOne(req.body, (err, result) => {
+            if (err) return console.log(err);
+        });
+    }
+    else {  
+        //Passwords do NOT match
+    }
+
+    req.body.metrics = [{}];
     db.collection('stores').insertOne(req.body, (err, result) => {
         if (err) return console.log(err);
     });
 
+    //WHERE TO GO AFTER REGISTERING FOR AN ACCOUNT
     res.redirect('/');
 });
 
