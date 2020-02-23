@@ -6,15 +6,23 @@
         <meta name="description" content="Sustainabeanity">
         <%- include('../partials/styles') %>
     </head>
-    <body style="background-color: #4f7942">
-        <div style="margin-top: 100px; height: 80%;">
+    <body style="background-color: #333333">
+        <div style="background-color: #4f7942; margin-top: 100px; height: 80%;">
+            <br>
+            <h1><%= storename %></h1>
+            <h4><%= storestate %></h4>
             <%- include('../partials/header') %>
-            <div id="storedata" style="visibility: hidden;"><%- JSON.stringify(storedata)%></div>
-            <div id="storename" style="visibility: hidden;"><%= storename%></div>
-            <div id="storestate" style="visibility: hidden;"><%= storestate%></div>
-            <div id="username" style="visibility: hidden;"><%= username %></div>
-            <div id="apikey" style="visibility: hidden;"><%= apikey%></div>
-            <div id="tester"></div>
+            <div id="storedata" style="visibility: hidden; height: 0%;"><%- JSON.stringify(storedata)%></div>
+            <div id="storename" style="visibility: hidden; height: 0%;"><%= storename%></div>
+            <div id="storestate" style="visibility: hidden; height: 0%;"><%= storestate%></div>
+            <div id="username" style="visibility: hidden; height: 0%;"><%= username %></div>
+            <div id="apikey" style="visibility: hidden; height: 0%;"><%= apikey%></div>
+            <br>
+            <br>
+            <div id="g1"></div>
+            <div id="g2"></div>
+            <div id="g3"></div>
+            <div id="g4"></div>
         </div>
         <script src="/js/plotly-latest.min.js"></script>
         <script src="/js/graph.js"></script>

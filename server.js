@@ -45,7 +45,7 @@ app.get('/', (req, res) => {
     res.render('pages/index.ejs');
 });
 app.get('/search', (req, res) => {
-    let results = [];
+    let results = "";
     res.render('pages/search.ejs', {results:results});
 });
 app.get('/account', (req, res) => {
@@ -68,7 +68,7 @@ app.get('/about', (req, res) => {
 app.get('/:name', (req,res) => {
     //req.params.name
     db.collection('stores').findOne({storeID:parseName(req.params.name)}, function(err, result) {
-        if (err || result === null) console.log("303");
+        if (err || result === null) res.render('pages/error.ejs');
         else {
             res.render('pages/dynamicStore.ejs',{
                 username: "alma9011",
@@ -85,21 +85,22 @@ app.get('/:name', (req,res) => {
 //Adding metrics to a unique store
 app.post('/metrics', (req,res) => {
     //MUST GET STORE NAME FROM SESSION
-    let sname = req.body.name;
+    let sname = req.session.user.name;
+    sname = parseName(sname);
+    console.log(sname);
     delete req.body.name;
     req.body.date = new Date();
     db.collection('stores').updateOne(
-        {name:sname},
+        {storeID:sname},
         {$push: {metrics:req.body}}
     )
-    res.redirect('/');
+    res.redirect('/account');
 });
 
 //USER ATTEMPTING TO LOGIN
 app.post('/login', async (req,res) => {
 
     db.collection('stores').findOne({storeID:parseName(req.body.name)}, function(err, result) {
-        console.log(result);
         if (err || result === null) res.render('pages/account.ejs', {error:"invusr"});
         else {
             let user = result;
@@ -175,10 +176,17 @@ app.post('/register', (req,res) => {
 //SEARCHING
 app.post('/search', (req,res) => {
     storeID = parseName(req.body.name)
-    console.log(new RegExp(req.body.name));
     db.collection('stores').find( {storeID: new RegExp(storeID)}).toArray(function(err, results) {
+        if (results.length === 0) results = "none";
         res.render('pages/search.ejs',{results:results});
     });
+})
+
+//This is for the form on the accounts page linknig to a user dashboard
+app.post('/userlink', (req,res) => {
+    let name = req.session.user.name;
+    name = parseName(name);
+    res.redirect('/'+name);
 })
 
 //remove whitespace and lowercase all letters
