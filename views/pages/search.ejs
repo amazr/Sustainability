@@ -1,29 +1,26 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Register</title>
+        <title>Search</title>
         <meta charset="UTF-8">
         <meta name="description" content="Sustainabeanity">
         <%- include('../partials/styles') %>
         <body style="background-color: #333333;">
-            <div class="loader">
-                <img src="/img/preloader.gif"/>
-            </div>
-            <%- include('../partials/header') %>
-            <br>
-            <br>
-            <br>
-            <br>
-            <%- include('../partials/search') %>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <% for (let i = 0; i < results.length; i++) { %>
+            <div style="background: white; margin-top: 100px; height: 80%;">
+                <div class="loader">
+                    <img src="/img/preloader.gif"/>
+                </div>
                 <br>
-                <%= results[i].name %>
-            <% } %>
+                <%- include('../partials/header') %>
+                <%- include('../partials/search') %>
+                <div style="padding-left: 30%;">
+                    <% for (let i = 0; i < results.length; i++) { %>
+                        <br>
+                        <br>
+                        <a href=""><%= results[i].name %></a>
+                    <% } %>
+                </div>
+            </div>
             <script src="/js/preloader.js"></script>
         <script src="/js/jquery-3.2.1.min.js"></script>  
         <script src="/js/main.js"></script>
