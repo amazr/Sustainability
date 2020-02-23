@@ -24,8 +24,11 @@
         <div style="background-color: white; margin-top: 100px; height: 80%;">
             <br>
             <div style="padding-left: 20%; padding-right: 20%;">
-                <h1><%= storename %></h1>
-             <h4><%= storestate %></h4>
+                <h1 style="color:#4f7942;"><%= storename %></h1>
+                <h4 style="color:#4f7942;"><%= storestate %></h4>
+                <br>
+                <br>
+                <h2 style="color:grey;">Breakdown of Carbon Emissions by Source</h2>
             </div>
             <%- include('../partials/header') %>
             <div id="storedata" style="visibility: hidden; height: 0%;"><%- JSON.stringify(storedata)%></div>
@@ -36,7 +39,6 @@
             <br>
             <br>
             <div class="body">
-              <h2 style="color:#4f7942;">Breakdown of Carbon Emissions by Source</h2>
                 <div class="graphs">
                     <div id="g3"></div>
                     <br>
