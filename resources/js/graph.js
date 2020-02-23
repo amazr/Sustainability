@@ -23,7 +23,7 @@ let cvw = [];
 
 for (i = 1; i < storedata.length; i++) {
 	dates.push(storedata[i].date);
-	water.push(parseInt(storedata[i].water));
+	water.push(parseIntc(storedata[i].water));
 	electric.push(parseInt(storedata[i].electric));
 	trash.push(parseInt(storedata[i].trash) * 100 / (parseInt(storedata[i].trash) + parseInt(storedata[i].recycle) + parseInt(storedata[i].Compost)));
 	recycle.push(parseInt(storedata[i].recycle) * 100 / (parseInt(storedata[i].trash) + parseInt(storedata[i].recycle) + parseInt(storedata[i].Compost)));
@@ -31,11 +31,28 @@ for (i = 1; i < storedata.length; i++) {
 	cvw.push(parseInt(storedata[i].water) / parseInt(storedata[i].coffee))
 }
 
-let gas = parseInt(storedata[storedata.length-1].gas) * 11.66;
-let lastElectric = parseInt(storedata[storedata.length-1].electric) * 0.95;
-let commute = parseInt(storedata[storedata.length-1].commute) * 0.9;
-let lastCoffee = parseInt(storedata[storedata.length-1].coffee) * 11;
-let milk = parseInt(storedata[storedata.length-1].milk) * 7;
+let gas;
+let lastElectric;
+let commute;
+let lastCoffee;
+let milk;
+let lastTrash;
+i = storedata.length-1;
+while(true) {
+	if (i === 0) break;
+	gas = parseInt(storedata[i].gas) * 11.66;
+	lastElectric = parseInt(storedata[i].electric) * 0.95;
+	commute = parseInt(storedata[i].commute) * 0.9;
+	lastCoffee = parseInt(storedata[i].coffee) * 11;
+	milk = parseInt(storedata[i].milk) * 7;
+	lastTrash = parseInt(storedata[i].trash) * 4.4;
+	if (isNaN(gas) || isNaN(lastElectric) || isNaN(commute) || isNaN(lastCoffee) || isNaN(milk) || isNaN(lastTrash)) {
+		i--;
+		if (i === 0) break;
+		else continue;
+	}
+	else break;
+}
 
 var percentTrash = {
 x: dates,
@@ -69,7 +86,6 @@ title: 'Percentage'
 };
 
 var data1 = [percentTrash, percentCompost, percentRecycle];
-
 Plotly.newPlot(g1, data1, label1);
 
 var electric2 = {
@@ -98,7 +114,7 @@ type: 'pie'
 }]
 
 var layout3 = {
-title: 'Where are those carbon dioxide emmissions coming from?',
+title: 'Average CO2 emissions per day (from most recent data): ' + Math.floor(milk + lastElectric + gas + commute + lastCoffee + lastTrash) + 'lbs',
 width: 700,
 };
 
