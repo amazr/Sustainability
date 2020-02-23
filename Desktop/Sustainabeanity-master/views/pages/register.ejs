@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Register</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="Sustainabeanity">
+        <style>
+            .accountForm{
+                margin-top: 50px;
+                color:white;
+            }
+        </style>
+        <%- include('../partials/styles') %>
+        <body style="background-color: #333333;">
+            <div class="loader">
+                <img src="/img/preloader.gif"/>
+            </div>
+            <%- include('../partials/header') %>
+            <div>
+                <h2 style="margin-top: 150px; text-align: center;">Register Your Business</h2>
+            </div>
+            <div class="accountForm">
+            <%- include('../partials/accountForm') %>
+            </div>
+        <script src="/js/preloader.js"></script>
+        <script src="/js/jquery-3.2.1.min.js"></script>  
+        <script src="/js/main.js"></script>
+        </body>
+    </head>
+</html>
