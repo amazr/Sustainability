@@ -23,7 +23,7 @@ let cvw = [];
 
 for (i = 1; i < storedata.length; i++) {
 	dates.push(storedata[i].date);
-	water.push(parseIntc(storedata[i].water));
+	water.push(parseInt(storedata[i].water));
 	electric.push(parseInt(storedata[i].electric));
 	trash.push(parseInt(storedata[i].trash) * 100 / (parseInt(storedata[i].trash) + parseInt(storedata[i].recycle) + parseInt(storedata[i].Compost)));
 	recycle.push(parseInt(storedata[i].recycle) * 100 / (parseInt(storedata[i].trash) + parseInt(storedata[i].recycle) + parseInt(storedata[i].Compost)));

@@ -16,7 +16,6 @@
                 width: 60;
                 height: auto;
                 padding-bottom: 5%;
-
             }
         </style>
     </head>
@@ -24,11 +23,8 @@
         <div style="background-color: #4f7942; margin-top: 100px; height: 80%;">
             <br>
             <div style="padding-left: 20%; padding-right: 20%;">
-                <h1 style="color:#4f7942;"><%= storename %></h1>
-                <h4 style="color:#4f7942;"><%= storestate %></h4>
-                <br>
-                <br>
-                <h2 style="color:grey;">Breakdown of Carbon Emissions by Source</h2>
+                <h1><%= storename %></h1>
+             <h4><%= storestate %></h4>
             </div>
             <%- include('../partials/header') %>
             <div id="storedata" style="visibility: hidden; height: 0%;"><%- JSON.stringify(storedata)%></div>
@@ -40,11 +36,11 @@
             <br>
             <div class="body">
                 <div class="graphs">
+                    <div id="g3"></div>
+                    <br>
                     <div id="g1"></div>
                     <br>
-                    <div id="g2"></div>
-                    <br>
-                    <div style="margin-left: 5%; padding-right: 10%;" id="g3"></div>
+                    <div style="margin-left: 5%; padding-right: 10%;" id="g2"></div>
                      <br>
                     <div id="g4"></div>
                     <br>
