@@ -14,10 +14,17 @@
                 <%- include('../partials/header') %>
                 <%- include('../partials/search') %>
                 <div style="padding-left: 30%;">
+                    <% if (results.length === "") { %>
+                        <p></p>
+                    <% } else if (results === "none") { %>
+                        <p>No Results.</p>
+                    <% } %>
+
                     <% for (let i = 0; i < results.length; i++) { %>
                         <br>
                         <br>
-                        <a href=""><%= results[i].name %></a>
+                        <br>
+                        <a href="<%= results[i].storeID %>"><%= results[i].name %></a>
                     <% } %>
                 </div>
             </div>
