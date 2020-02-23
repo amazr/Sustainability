@@ -1,3 +1,4 @@
+
 let storedata = JSON.parse(document.getElementById('storedata').textContent);
 let storename = document.getElementById('storename').textContent;
 let storestate = document.getElementById('storestate').textContent;
@@ -35,7 +36,6 @@ let lastElectric = parseInt(storedata[storedata.length-1].electric) * 0.95;
 let commute = parseInt(storedata[storedata.length-1].commute) * 0.9;
 let lastCoffee = parseInt(storedata[storedata.length-1].coffee) * 11;
 let milk = parseInt(storedata[storedata.length-1].milk) * 7;
-let lastTrash = parseInt(storedata[storedata.length-1].trash) * 4.4;
 
 var percentTrash = {
 x: dates,
@@ -92,14 +92,13 @@ title: 'kilowatt hours'
 Plotly.newPlot(g2, [electric2], label2);
 
 var data3 = [{
-values: [gas, lastElectric, commute, lastCoffee, milk, lastTrash],
-labels: ['gas', 'electric', 'commute', 'coffee', 'milk', 'trash'],
+values: [gas, lastElectric, commute, lastCoffee, milk],
+labels: ['gas', 'electric', 'commute', 'coffee', 'milk'],
 type: 'pie'
 }]
 
 var layout3 = {
-title: 'Total pounds of CO2 from most recent data: ' + Math.floor(milk + lastElectric + gas + commute + lastCoffee) + 'lbs',
-height: 50,
+title: 'Where are those carbon dioxide emmissions coming from?',
 width: 700,
 };
 
