@@ -5,8 +5,6 @@ const bodyParser= require('body-parser');
 const bcrypt = require("bcrypt");
 const session = require('express-session');
 const MongoStore = require('connect-mongodb-session')(session);
-const plotly = require('plotly')("alma9011", "3gQfXmOXNjYWJV5CzIWm");
-
 
 const app = express();
 
