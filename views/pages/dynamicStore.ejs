@@ -8,9 +8,6 @@
     </head>
     <body style="background-color: #4f7942">
         <div style="margin-top: 100px; height: 80%;">
-            <div class="loader">
-                <img src="/img/preloader.gif"/>
-            </div>
             <%- include('../partials/header') %>
             <div id="storedata" style="visibility: hidden;"><%- JSON.stringify(storedata)%></div>
             <div id="storename" style="visibility: hidden;"><%= storename%></div>
@@ -19,9 +16,6 @@
             <div id="apikey" style="visibility: hidden;"><%= apikey%></div>
             <div id="tester"></div>
         </div>
-        <script src="/js/preloader.js"></script>
-        <script src="/js/jquery-3.2.1.min.js"></script>  
-        <script src="/js/main.js"></script>
         <script src="/js/plotly-latest.min.js"></script>
         <script src="/js/graph.js"></script>
     </body>
