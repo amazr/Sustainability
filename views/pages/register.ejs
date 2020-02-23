@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Register</title>
+        <title>About Us</title>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="/resources/css/columns.css">
         <meta name="description" content="Sustainabeanity">
-        <style>
-            .accountForm{
-                margin-top: 50px;
-                color:white;
-            }
-        </style>
         <%- include('../partials/styles') %>
         <body style="background-color: #333333;">
-            <div class="loader">
+            <div  class="loader">
                 <img src="/img/preloader.gif"/>
             </div>
             <%- include('../partials/header') %>
-            <div>
-                <h2 style="margin-top: 150px; text-align: center;">Register Your Business</h2>
+            <div style="margin-top: 100px; background: #4f7942; height: 90%; padding: 10px;">     
+                <div style="padding-top: 50px;">
+                    <div style="text-align: center;">
+                        <h2>Register Your Business</h2>
+                    </div>
+                    <div style="margin-top: 50px; color: white">
+                        <%- include('../partials/accountForm') %>
+                    </div>
+                </div>
             </div>
-            <div class="accountForm">
-            <%- include('../partials/accountForm') %>
-            </div>
+
         <script src="/js/preloader.js"></script>
         <script src="/js/jquery-3.2.1.min.js"></script>  
         <script src="/js/main.js"></script>
