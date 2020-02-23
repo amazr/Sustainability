@@ -1,9 +1,51 @@
 <form action="account" method="POST">
-    <label for="name">What is the Name of your store?</label>
-    <input type="text" placeholder="Store Name" name="name">
-    <br>
-    <label for="state">What state are you in?</label>
-    <input type="text" placeholder="State" name="state">
-    <br>
-    <button type="submit">Submit</button>
+    <style>
+        .columnleft {
+        padding-right: 20px;
+        text-align: right;
+        width: 50%;
+        }
+        .columnright {
+        float: left;
+        width: 50%;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+        content: "";
+        display: table;
+        clear: both;
+        }
+        .button{
+            padding-left: 50%;
+        }
+    </style>
+    <div >
+        <div class="row">
+            <div class="columnleft"><label for="name">What is the name of your store?</label></div>
+            <div class="columnright"><input type="text" placeholder="Store Name" name="name"></div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="columnleft">   <label for="state">What state are you in?</label></div>
+            <div class="columnright">    <input type="text" placeholder="State" name="state"></div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="columnleft">    <label for="Email">Email:</label></div>
+            <div class="columnright">    <input type="text" placeholder="email" name="rpassword"></div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="columnleft">    <label for="password">Password:</label></div>
+            <div class="columnright">    <input type="text" placeholder="password" name="password"></div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="columnleft">    <label for="confirm password">Confirm Password:</label></div>
+            <div class="columnright">    <input type="text" placeholder="confirm password" name="rpassword"></div>
+        </div>
+        <br>
+        <div class="button"><button type="submit">Submit</button></div>
+    </div>
 </form>
