@@ -1,3 +1,4 @@
+
 let storedata = JSON.parse(document.getElementById('storedata').textContent);
 let storename = document.getElementById('storename').textContent;
 let storestate = document.getElementById('storestate').textContent;
@@ -107,8 +108,8 @@ title: 'kilowatt hours'
 Plotly.newPlot(g2, [electric2], label2);
 
 var data3 = [{
-values: [gas, lastElectric, commute, lastCoffee, milk, lastTrash],
-labels: ['gas', 'electric', 'commute', 'coffee', 'milk', 'trash'],
+values: [gas, lastElectric, commute, lastCoffee, milk],
+labels: ['gas', 'electric', 'commute', 'coffee', 'milk'],
 type: 'pie'
 }]
 
