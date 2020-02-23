@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>About Us</title>
+        <title>Account</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="/resources/css/columns.css">
         <meta name="description" content="Sustainabeanity">
@@ -18,7 +18,14 @@
                     </div>
                     <div style="margin-top: 50px; color: white">
                         <%- include('../partials/login') %>
-                        <%= error %>
+                        <br>
+                        <div>
+                            
+                            <% if (error === "") { %>
+                            <%} else { %>
+                                <p style="color: red; text-align:center;">Wrong username or password.</p>
+                            <% } %>
+                        </div>
                     </div>
                 </div>
             </div>
