@@ -1,61 +1,78 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>About Us</title>
-        <meta charset="UTF-8">
-        <meta name="description" content="Sustainabeanity">
-        <%- include('../partials/styles') %>
-        <style>
-            .aboutus{
-                margin-top: 100px;
-                background-color: #4f7942;
-                height: 90%;
-            }
-            .aboutustext{
-                margin-left: 20%;
-                padding-right: 20%;
-                padding-top: 125px;
-                color: white;
-            }
-            p{
-                font-size: 14px;
-                text-indent: 30px;
-            }
-        </style>
-        </style>
-        <body style="background-color: #333333;">
-            <div class="loader">
-                <img src="/img/preloader.gif"/>
-            </div>
-            <%- include('../partials/header') %>
-            <div class="aboutus">
-                <div class="aboutustext">
-                    <h2 >Welcome to Sustainabeanity!</h2>
-                        <br>
-                    <p style="color: white;">
-                        This application was built by three students during the Univeristy of Colorado's sixth anual hackathon. During a twenty four hour period, 
-                        we attempted to scrape together a <i>functioning</i>  website that allows businesses to input various data to keep track of their environmental
-                        impact. 
-                        <br>
-                        <a href="https://hackcu.org/">Click here to visit HackCU's website.</a>
-                        <br>
-                        
-                    </p>
-                    <p style="color: white;">
-                        Using the account page, business owners can input the amount of supplies they use for their shop to log their total carbon footprint. On the
-                        search page, users can track the total amount of carbon a certain store uses.
-                    </p>
-                    <p style="color: white;">
-                        Currently, this app is geared towards coffee shops, however it could easily be tweaked to support a wide genre of marketplaces. We used 
-                        a combination of HTML, MongoDB, EJS, and CSS to put this server together. Visit our <a href="https://github.com/bouldercoder9/Sustainabeanity">github</a>
-                        to view the repository for this project. 
-                    </p>
-                </div>
-            </div>
-
-        <script src="/js/preloader.js"></script>
-        <script src="/js/jquery-3.2.1.min.js"></script>  
-        <script src="/js/main.js"></script>
-        </body>
-    </head>
+   <head>
+      <title>About Us</title>
+      <meta charset="UTF-8">
+      <meta name="description" content="Sustainabeanity">
+      <%- include('../partials/styles') %>
+      <style>
+         .aboutus{
+         margin-top: 100px;
+         background-color: #4f7942;
+         height: 1400px;
+         }
+         .aboutustext{
+         padding-left: 20%;
+         padding-right: 20%;
+         padding-top: 125px;
+         color: white;
+         }
+         p{
+         font-size: 14px;
+         color: white;
+         }
+         a{
+         color: #83DBFF;
+         }
+      </style>
+      </style>
+   <body style="background-color: #333333;">
+      <div class="loader">
+         <img src="/img/preloader.gif"/>
+      </div>
+      <%- include('../partials/header') %>
+      <div class="aboutus">
+         <div class="aboutustext">
+            <h2 >Welcome to Sustainabeanity! <br></h2>
+            <br>
+            <p>
+               This application was built by three students during the Univeristy of Colorado's sixth anual hackathon. During a twenty four hour period, 
+               we attempted to scrape together a <i>functioning</i>  website that allows businesses to input various data to keep track of their environmental
+               impact. 
+               <br>
+               <a href="https://hackcu.org/">Click here to visit HackCU's website.</a>
+               <br>
+            </p>
+            <p>
+               Using the account page, business owners can input the amount of supplies they use for their shop to log their total carbon footprint. On the
+               search page, users can track the total amount of carbon a certain store uses.
+            </p>
+            <p>
+               Currently, this app is geared towards coffee shops, however it could easily be tweaked to support a wide genre of marketplaces. We used 
+               a combination of HTML, MongoDB, EJS, and CSS to put this server together. Visit our <a href="https://github.com/bouldercoder9/Sustainabeanity">github</a>
+               to view the repository for this project. 
+            </p>
+            <h3 style="color: white;"><br>Methods:</h3>
+            <p>
+            <p>We calculated each of the following metrics using publicly available data from the EPA, other scholary scores, and with self reporting from our partner companies.
+            </p>
+            <p>For the carbon dioxide produced from power generation, we used the average per state produced by the power grid as per the EPA's eGRID database:
+            <a href = "https://www.epa.gov/energy/emissions-generation-resource-integrated-database-egrid"> https://www.epa.gov/energy/emissions-generation-resource-integrated-database-egrid <a>
+            </p>
+            <p>
+               For the carbon dioxide from natural gas and commuting, we used national averages specificed by the EPA's greenhouse gas calculator:
+               <a href = "https://www.epa.gov/energy/greenhouse-gases-equivalencies-calculator-calculations-and-references"> https://www.epa.gov/energy/greenhouse-gases-equivalencies-calculator-calculations-and-references <a>
+               </p>
+            <p>For the carbon footprint of coffee production, we used averages calculated here:<a href = "https://www.cedelft.eu/en/publications/download/1009"> https://www.cedelft.eu/en/publications/download/1009 <a>
+            </p>
+            <p>For the carbon footprint of milk production, we used these values from a study run from Cornell:
+            <a href = "https://ecommons.cornell.edu/bitstream/handle/1813/37985/CNC2014_18_Chase.pdf;sequence=2"> https://ecommons.cornell.edu/bitstream/handle/1813/37985/CNC2014_18_Chase.pdf;sequence=2 <a>
+            </p>
+         </div>
+      </div>
+      <script src="/js/preloader.js"></script>
+      <script src="/js/jquery-3.2.1.min.js"></script>  
+      <script src="/js/main.js"></script>
+   </body>
+   </head>
 </html>

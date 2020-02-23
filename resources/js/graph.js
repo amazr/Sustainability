@@ -98,8 +98,8 @@ type: 'pie'
 
 var layout3 = {
 title: 'Where are those carbon dioxide emmissions coming from?',
-height: 400,
-width: 500
+height: 50,
+width: 700,
 };
 
 Plotly.newPlot(g3, data3, layout3);
