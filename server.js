@@ -5,6 +5,8 @@ const bodyParser= require('body-parser');
 const bcrypt = require("bcrypt");
 const session = require('express-session');
 const MongoStore = require('connect-mongodb-session')(session);
+const plotly = require('plotly')("alma9011", "3gQfXmOXNjYWJV5CzIWm");
+
 
 const app = express();
 
@@ -65,7 +67,18 @@ app.get('/about', (req, res) => {
 });
 app.get('/:name', (req,res) => {
     //req.params.name
-    res.render('pages/dynamicStore.ejs');
+    db.collection('stores').findOne({storeID:parseName(req.params.name)}, function(err, result) {
+        if (err || result === null) console.log("303");
+        else {
+            res.render('pages/dynamicStore.ejs',{
+                username: "alma9011",
+                apikey: "3gQfXmOXNjYWJV5CzIWm",
+                storedata: result.metrics,
+                storename: result.name,
+                storestate: result.state
+            });
+        }
+    });
 });
 
 //POST requests

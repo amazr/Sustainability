@@ -13,7 +13,8 @@
     "ejs": ">=2.5.5",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
-    "mongodb": "^3.5.3"
+    "mongodb": "^3.5.3",
+    "plotly": "^1.0.6"
   },
   "devDependencies": {
     "nodemon": "^1.19.0"
