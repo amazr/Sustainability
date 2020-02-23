@@ -98,7 +98,6 @@ type: 'pie'
 
 var layout3 = {
 title: 'Where are those carbon dioxide emmissions coming from?',
-height: 50,
 width: 700,
 };
 
