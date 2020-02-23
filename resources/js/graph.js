@@ -1,3 +1,4 @@
+
 let storedata = JSON.parse(document.getElementById('storedata').textContent);
 let storename = document.getElementById('storename').textContent;
 let storestate = document.getElementById('storestate').textContent;
