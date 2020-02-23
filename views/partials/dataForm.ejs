@@ -1,25 +1,80 @@
 <form action="/metrics" method="POST">
-    <label for="waste">Store Name</label>
-    <input type="text" placeholder="Name" name="name">
+    <style>
+       .columnleft {
+       padding-right: 20px;
+       text-align: right;
+       width: 50%;
+       }
+       .columnright {
+       float: left;
+       width: 50%;
+       }
+       /* Clear floats after the columns */
+       .row:after {
+       content: "";
+       display: table;
+       clear: both;
+       }
+       .button{
+       padding-left: 50%;
+       }
+       div{
+       margin-top: 2px;
+       }
+    </style>
+    <div class="row">
+       <div class="columnleft">     <label for="waste">Store Name</label>        </div>
+       <div class="columnright">     <input type="text" placeholder="Name" name="name">        </div>
+    </div>
     <br>
-    <label for="waste">Average Pounds of Trash, Recycling, and Compost per day</label>
-    <input type="text" placeholder="Trash" name="trash">
-    <input type="text" placeholder="Racycling" name="recycle">
-    <input type="text" placeholder="Compost" name="compost">
+    <div class="row">
+       <div class="columnleft">     <label for="waste">Average Pounds of Trash, Recycling, and Compost per day</label>
+       </div>
+       <div class="columnright">     <input type="text" placeholder="Trash" name="trash">        </div>
+    </div>
+    <div class="row">
+       <div class="columnleft"> </div>
+       <div class="columnright">     <input type="text" placeholder="recycling" name="recycle"></div>
+    </div>
+    <div class="row">
+        <div class="columnleft"> </div>
+        <div class="columnright">     <input type="text" placeholder="Compost" name="compost"></div>
+     </div>
+     <br>
+    <div class="row">
+       <div class="columnleft">    <label for="milk">Average Gallons of Milk used</label> </div>
+       <div class="columnright">    <input type="text" placeholder="Milk" name="milk"> </div>
+    </div>
     <br>
-    <label for="milk">Average Gallons of Milk used</label>
-    <input type="text" placeholder="Milk" name="milk">
+    <div class="row">
+       <div class="columnleft">     <label for="commute">Average Amount of Miles All Employees commute by car per day</label></div>
+       <div class="columnright">    <input type="text" placeholder="Average Commute time" name="commute"> </div>
+    </div>
     <br>
-    <label for="commute">Average Amount of Miles All Employees commute by car per day</label>
-    <input type="text" placeholder="Average Commute time" name="commute">
+    <div class="row">
+       <div class="columnleft">
+          <label for="bills">Utilities</label> 
+       </div>
+       <div class="columnright">     <input type="text" placeholder="Gas" name="gas"></div>
+    </div>
+    <div class="row">
+       <div class="columnleft">
+           
+       </div>
+       <div class="columnright"><input type="text" placeholder="Water" name="water"> </div>
+    </div>
+    <div class="row">
+       <div class="columnleft"> </div>
+       <div class="columnright">     <input type="text" placeholder="Electric" name="electric"></div>
+    </div>
     <br>
-    <label for="bills">Utilities</label>
-    <input type="text" placeholder="Gas" name="gas">
-    <input type="text" placeholder="Water" name="water">
-    <input type="text" placeholder="Electric" name="electric">
-    <br>
-    <label for="coffee">Average Pounds of coffee from non-local regions ordered</label>
-    <input type="text" placeholder="Coffee" name="coffee">
-    <br>
-    <button type="submit">Submit</button>
-</form>
+    <div class="row">
+       <div class="columnleft">     <label for="coffee">Average Pounds of coffee from non-local regions ordered</label></div>
+       <div class="columnright">     <input type="text" placeholder="Coffee" name="coffee"></div>
+    </div>
+    <div class="row">
+        <div class="columnleft"></label></div>
+        <div class="columnright"><div class="column-right"><button type="submit">Submit</button></div></div>
+     </div>
+    
+ </form>
